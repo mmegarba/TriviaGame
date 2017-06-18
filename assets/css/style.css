@@ -12,7 +12,20 @@ font-size: 52pt;
 
 }
 
+#reset{
 
+  margin-top:20px
+}
+
+
+
+#Start-Game{
+font-size:34pt!important;
+width:50%!important;
+margin-top:40px;
+position:relative;
+right:10%;
+}
 
 
 
@@ -23,6 +36,13 @@ height:600px;
 text-align:center;
 margin-left:10%;
 margin-top: 10%;
+
+
+}
+
+#main{
+margin-top:15%;
+
 
 
 }

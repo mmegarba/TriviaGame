@@ -4,19 +4,58 @@ var gameObj =
   questions: [
 
   {
-  question: ["What was the first CGI movie Bro"],
-  answers: ["A bugs Life", "Monsters Inc", "Toy Story", "The Lion King"],
-  correctAns: "Toy Story",
-  gifSearch:"Toy+Story"
+  question: ["When will the John Webb Space Telescope be launched?"],
+  answers: ["2020", "2019", "2018", "2023"],
+  correctAns: "2018",
+  gifSearch:"James+Webb+Space"
   },
 
   {
-  question: ["Who is DA GOAT"],
-  answers: ["Michael Jordan", "King James"],
-  correctAns: "King James",
-  gifSearch:"Lebron+James"
+  question: ["Who has the most points in NBA Playoffs History?"],
+  answers: ["Michael Jordan", "Lebron James", "Bill Russell", "Wilt Chamberlain"],
+  correctAns: "Lebron James",
+  gifSearch:"King+James"
   }
 
+,
+
+{
+  question: ["Who is the highest paid athlete in the World?"],
+  answers: ["Christiano Ronaldo", "Lionel Messi", "Andrew Luck", "Roger Federer"],
+  correctAns: "Christiano Ronaldo",
+  gifSearch:"Christiano+Ronaldo"
+
+}
+,
+{
+question: ["If you combined all the gold every mined in the history of mankind, how much area would that fill?"],
+answers: ["The area of the country luxemburg", "The area of a tennis court", "", "An average bathtub", "The empire state building"],
+correctAns: "The area of a tennis court",
+gifSearch:"goldmember"
+}
+
+,
+{
+  question: ["In what year did the Soviet Union launch Sputnik, the worlds first artificial earth satellite?"],
+  answers: ["1978", "1952", "1977", "1957"],
+  correctAns: "1957",
+  gifSearch:"sputnik"
+}
+,
+{
+
+  question: ["Between 1900 and 1920, ____ was an Olympic event."],
+  answers: ["Three-Legged Race", "Sack Race", "Egg on a Spoon", "Tug of War"],
+  correctAns: "Tug of War",
+  gifSearch:"Tug+of+war"
+}
+,
+{
+  question: ["In 2006 an Australian man tried to sell ____ on eBay. The price rose to $3,000 before eBay shut it down."],
+  answers: ["His Mother in law", "A neighboor's car fleet", "Austrailia Zoo", "New Zealand"],
+  correctAns: "New Zealand",
+  gifSearch:"Kiwi",
+}
   ]
 
 }
@@ -30,7 +69,7 @@ function newGame(){
 }
 
 
-
+var gifSearch;
 var correctAns;
 var time;
 var timer;
@@ -56,7 +95,7 @@ console.log(response.data[0].embed_url);
 var newgif = $("<img>")
 newgif.attr("src", response.data[0].images.fixed_height.url)
 newgif.attr("id", "gif")
-$("#Question").after(newgif);
+$("#Answers").after(newgif);
 
 });
 
@@ -91,11 +130,12 @@ $("#Answers").append(newUnanswered)
 
 $("#Question").text("All Done Here is How you Did!")
 
-var newButton  = $("<button>");
-newButton.attr("id", "reset");
+var newDiv  = $("<div>");
+newDiv.attr("id", "reset");
+newDiv.attr("class", "answer");
 // newButton.attr("class", ".userClick")
-newButton.text("Start Over?")
-$("#Question").after(newButton);
+newDiv.text("Start Over?")
+$("#Answers").after(newDiv);
 
 }
 
@@ -112,7 +152,7 @@ function outofTime(){
   $("#Answers").text("The Correct Answer Was: " + correctAns)
 
 
-  grabGiphy(correctAns);
+  grabGiphy(gifSearch);
 
   copygameObj.questions.shift();
   stopTimer();
@@ -137,7 +177,7 @@ $("#Question").empty();
 $("#Question").text("Nope!")
 $("#Answers").text("The Correct Answer Was: " + correctAns)
 
-grabGiphy(correctAns);
+grabGiphy(gifSearch);
 
 incorrectAnswers++;
 
@@ -145,7 +185,7 @@ setTimeout(function(){
 
 newQuestion("new")
 
-}, 3000);
+}, 5000);
 
 
 }
@@ -157,7 +197,7 @@ $("#Question").empty();
 
 $("#Question").text("Correct!")
 
-grabGiphy(copygameObj.questions[0].gifSearch)
+grabGiphy(gifSearch)
 
 
 setTimeout(function(){
@@ -250,6 +290,7 @@ var question = copygameObj.questions[0].question[0];
   newAns.attr("data", answer);
   $("#Answers").append(newAns);
 
+gifSearch = copygameObj.questions[0].gifSearch;
 correctAns = copygameObj.questions[0].correctAns;
 
   }
@@ -294,13 +335,15 @@ $("#Answers").on("click", ".answer", function() {
 
 });
 
+
+
 $(document.body).on('mouseover', '.answer' ,function(){
-  $(this).attr("style", "background:lightgrey")
+  $(this).attr("style", "background:lightgrey; border-style:solid; border-width:1px; border-color:blue;")
     });
 
 $(document.body).on('mouseout','.answer', function(){
 
-  $(this).attr("style", "background:yellow")
+  $(this).attr("style", "background:yellow;")
 
 
 });
