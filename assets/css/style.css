@@ -1,0 +1,42 @@
+body{
+font-size: 14pt;
+background-image: url("../images/triviabackground.jpeg")
+
+}
+
+#header{
+color:blue;
+text-align:center;
+font-size: 52pt;
+
+
+}
+
+
+
+
+
+#mainSection{
+background:yellow;
+width:80%;
+height:600px;
+text-align:center;
+margin-left:10%;
+margin-top: 10%;
+
+
+}
+
+.answer{
+
+font-size:18pt;
+width:25%;
+margin-left:37%;
+
+}
+
+
+#Answers{
+
+  margin-top:20px;
+}

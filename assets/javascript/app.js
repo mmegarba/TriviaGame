@@ -77,7 +77,6 @@ newQuestion();
 
 function gameEnd(){
 $("#Answers").empty();
-alert("game END")
 
 var newCorrect = $("<div>");
 var newIncorrect = $("<div>");
@@ -94,7 +93,8 @@ $("#Question").text("All Done Here is How you Did!")
 
 var newButton  = $("<button>");
 newButton.attr("id", "reset");
-newButton.text("Reset")
+// newButton.attr("class", ".userClick")
+newButton.text("Start Over?")
 $("#Question").after(newButton);
 
 }
@@ -104,6 +104,16 @@ $("#Question").after(newButton);
 
 function outofTime(){
   unanswered++;
+  $("#Answers").empty();
+  $("#Question").empty();
+
+
+  $("#Question").text("Out of Time!")
+  $("#Answers").text("The Correct Answer Was: " + correctAns)
+
+
+  grabGiphy(correctAns);
+
   copygameObj.questions.shift();
   stopTimer();
 
@@ -117,7 +127,18 @@ function outofTime(){
 
 
 function wrongAns(){
-alert("NOPE!");
+
+  // add in the correct answer
+
+$("#Answers").empty();
+$("#Question").empty();
+
+
+$("#Question").text("Nope!")
+$("#Answers").text("The Correct Answer Was: " + correctAns)
+
+grabGiphy(correctAns);
+
 incorrectAnswers++;
 
 setTimeout(function(){
@@ -131,8 +152,10 @@ newQuestion("new")
 
 function rightAns(){
 correctAnswers++;
+$("#Answers").empty();
+$("#Question").empty();
 
-alert("YES!");
+$("#Question").text("Correct!")
 
 grabGiphy(copygameObj.questions[0].gifSearch)
 
@@ -176,7 +199,7 @@ function myTimer(){
 
   time--;
 
-  $("#Timer").text(time);
+  $("#Timer").text("Time Remaining: " + time + " Seconds");
 }
 
 }
@@ -193,6 +216,7 @@ clearInterval(timer);
 
 function newQuestion(){
 
+  $("#reset").remove();
   $("#gif").remove();
 
   if(copygameObj.questions.length != 0)
@@ -200,7 +224,7 @@ function newQuestion(){
   $("#Start-Game").remove();
 
   $("#Timer").empty();
-  $("#question").empty();
+  $("#Question").empty();
   $("#Answers").empty();
 
 startTimer("new");
@@ -215,6 +239,9 @@ var question = copygameObj.questions[0].question[0];
 
   console.log(copygameObj.questions[0].answers[i])
   var answer = copygameObj.questions[0].answers[i];
+
+
+  $("#Timer").text("Time Remaining: 30 Seconds");
 
 
   var newAns = $("<div>");
@@ -263,6 +290,17 @@ $("#Answers").on("click", ".answer", function() {
     wrongAns();
   }
 
+
+
+});
+
+$(document.body).on('mouseover', '.answer' ,function(){
+  $(this).attr("style", "background:lightgrey")
+    });
+
+$(document.body).on('mouseout','.answer', function(){
+
+  $(this).attr("style", "background:yellow")
 
 
 });
