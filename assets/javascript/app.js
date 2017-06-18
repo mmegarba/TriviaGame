@@ -1,28 +1,35 @@
-var questions = [
+var gameObj =
 
 {
-question: ["What was the first CGI movie Bro"],
-answers: ["A bugs Life", "Monsters Inc", "Toy Story", "The Lion King"],
-correctAns: "Toy Story",
-gifSearch:"Toy+Story"
-},
+  questions: [
 
-{
-question: ["Who is DA GOAT"],
-answers: ["Michael Jordan", "King James"],
-correctAns: "King James",
-gifSearch:"Lebron+James"
+  {
+  question: ["What was the first CGI movie Bro"],
+  answers: ["A bugs Life", "Monsters Inc", "Toy Story", "The Lion King"],
+  correctAns: "Toy Story",
+  gifSearch:"Toy+Story"
+  },
+
+  {
+  question: ["Who is DA GOAT"],
+  answers: ["Michael Jordan", "King James"],
+  correctAns: "King James",
+  gifSearch:"Lebron+James"
+  }
+
+  ]
+
 }
 
-]
-
-var gameObj;
+var copygameObj;
 
 function newGame(){
 
- gameObj = Object.assign({},questions);
+  copygameObj = jQuery.extend(true, {}, gameObj);
 
 }
+
+
 
 var correctAns;
 var time;
@@ -56,6 +63,17 @@ $("#Question").after(newgif);
 
 }
 
+$(document.body).on('click', '#reset' ,function(){
+
+newGame();
+newQuestion();
+
+});
+
+
+
+
+
 
 function gameEnd(){
 $("#Answers").empty();
@@ -74,6 +92,10 @@ $("#Answers").append(newUnanswered)
 
 $("#Question").text("All Done Here is How you Did!")
 
+var newButton  = $("<button>");
+newButton.attr("id", "reset");
+newButton.text("Reset")
+$("#Question").after(newButton);
 
 }
 
@@ -82,7 +104,7 @@ $("#Question").text("All Done Here is How you Did!")
 
 function outofTime(){
   unanswered++;
-  questions.shift();
+  copygameObj.questions.shift();
   stopTimer();
 
   setTimeout(function(){
@@ -112,7 +134,7 @@ correctAnswers++;
 
 alert("YES!");
 
-grabGiphy(questions[0].gifSearch)
+grabGiphy(copygameObj.questions[0].gifSearch)
 
 
 setTimeout(function(){
@@ -123,7 +145,7 @@ newQuestion("new")
 
 },3000);
 
-questions.shift();
+copygameObj.questions.shift();
 
 
 }
@@ -173,7 +195,7 @@ function newQuestion(){
 
   $("#gif").remove();
 
-  if(questions.length != 0)
+  if(copygameObj.questions.length != 0)
 {
   $("#Start-Game").remove();
 
@@ -184,15 +206,15 @@ function newQuestion(){
 startTimer("new");
 
 
-var question = questions[0].question[0];
+var question = copygameObj.questions[0].question[0];
 
-  console.log(questions[0].question[0])
+  console.log(copygameObj.questions[0].question[0])
   $("#Question").text(question)
 
-  for (var i = 0; i < questions[0].answers.length; i++) {
+  for (var i = 0; i < copygameObj.questions[0].answers.length; i++) {
 
-  console.log(questions[0].answers[i])
-  var answer = questions[0].answers[i];
+  console.log(copygameObj.questions[0].answers[i])
+  var answer = copygameObj.questions[0].answers[i];
 
 
   var newAns = $("<div>");
@@ -201,7 +223,7 @@ var question = questions[0].question[0];
   newAns.attr("data", answer);
   $("#Answers").append(newAns);
 
-correctAns = questions[0].correctAns;
+correctAns = copygameObj.questions[0].correctAns;
 
   }
 
@@ -215,6 +237,7 @@ gameEnd();
 
 $("#Start-Game").on("click", function(){
 
+newGame();
 newQuestion();
 
 
@@ -236,7 +259,7 @@ $("#Answers").on("click", ".answer", function() {
 
 
     stopTimer();
-    questions.shift();
+    copygameObj.questions.shift();
     wrongAns();
   }
 
