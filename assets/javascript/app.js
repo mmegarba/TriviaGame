@@ -80,7 +80,7 @@ var unanswered= 0;
 
 
 function grabGiphy(searchTerm){
-var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=dc6zaTOxFJmzC&limit=1";
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=dc6zaTOxFJmzC&limit=1";
 
 console.log(searchTerm);
 
