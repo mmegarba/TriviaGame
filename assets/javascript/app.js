@@ -28,7 +28,7 @@ var gameObj =
 }
 ,
 {
-question: ["If you combined all the gold every mined in the history of mankind, how much area would that fill?"],
+question: ["If you combined all the gold ever mined in the history of mankind, how much area would that fill?"],
 answers: ["The area of the country luxemburg", "The area of a tennis court", "", "An average bathtub", "The empire state building"],
 correctAns: "The area of a tennis court",
 gifSearch:"goldmember"
@@ -161,7 +161,7 @@ function outofTime(){
 
   newQuestion("new")
 
-  }, 3000);
+}, 7000);
 
 }
 
@@ -185,7 +185,7 @@ setTimeout(function(){
 
 newQuestion("new")
 
-}, 5000);
+}, 7000);
 
 
 }
@@ -206,7 +206,7 @@ setTimeout(function(){
 newQuestion("new")
 
 
-},3000);
+},7000);
 
 copygameObj.questions.shift();
 
